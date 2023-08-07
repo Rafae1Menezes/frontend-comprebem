@@ -1,0 +1,29 @@
+.container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.content {
+  display: flex;
+  box-sizing: border-box;
+  background-color: #1569b7;
+  padding: 8px;
+
+  > * {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.main {
+  flex: 1;
+}
+
+.container button {
+  min-width: 48px;
+  height: 48px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
