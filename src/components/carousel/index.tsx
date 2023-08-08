@@ -11,6 +11,7 @@ export const Carousel = ({ color, products }: CarouselProps) => (
     {products.map((product) => (
       <ProductCard
         key={product.title}
+        id={product.id}
         title={product.title}
         price={product.price}
         description={product.description}
