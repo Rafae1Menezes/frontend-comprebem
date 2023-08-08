@@ -1,0 +1,41 @@
+.container {
+  border-radius: 8px;
+  border: 1px solid rgba(91, 91, 91, 0.19);
+  width: 158px;
+}
+
+.image {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 8px 8px 0 0;
+}
+
+.texts {
+  padding: 6px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.description {
+  font-size: 12px;
+  line-height: 0.89;
+  margin-bottom: 6px;
+  height: 22px;
+}
+
+.prince {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.button {
+  border-radius: 0 0 8px 8px;
+  width: 100%;
+  color: #fff;
+  padding: 4px 0;
+  font-size: 13px;
+}

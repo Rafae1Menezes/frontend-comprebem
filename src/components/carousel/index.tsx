@@ -1,3 +1,21 @@
+import { ProductCard, ProductCardProps } from "../productCard";
 import styles from "./index.module.scss";
 
-export const Carousel = () => <div className={styles.container}>carousel</div>;
+type CarouselProps = {
+  color: string;
+  products: Omit<ProductCardProps, "color">[];
+};
+
+export const Carousel = ({ color, products }: CarouselProps) => (
+  <div className={styles.container}>
+    {products.map((product) => (
+      <ProductCard
+        key={product.title}
+        title={product.title}
+        price={product.price}
+        description={product.description}
+        color={color}
+      />
+    ))}
+  </div>
+);

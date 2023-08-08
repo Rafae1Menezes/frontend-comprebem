@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { ReactNode } from "react";
 import BackIcon from "../../images/icons/backArrow.svg";
 import Logo from "../../images/logo.svg";
@@ -20,7 +21,9 @@ export const AppBar = ({
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {left && <div className={styles.left}>{left}</div>}
+        <div className={classNames(styles.left, { [styles.empty]: !left })}>
+          {left}
+        </div>
         <div className={styles.main}>{content}</div>
         {right && <div className={styles.right}>{right}</div>}
       </div>

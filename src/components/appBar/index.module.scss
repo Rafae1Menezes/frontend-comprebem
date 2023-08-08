@@ -2,6 +2,7 @@
   position: fixed;
   width: 100%;
   top: 0;
+  min-height: 104px;
 }
 
 .content {
@@ -9,6 +10,7 @@
   box-sizing: border-box;
   background-color: #1569b7;
   padding: 8px;
+  height: 64px;
 
   > * {
     display: flex;
@@ -16,8 +18,15 @@
   }
 }
 
+.empty {
+  width: 10px;
+}
+
 .main {
   flex: 1;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .container button {
