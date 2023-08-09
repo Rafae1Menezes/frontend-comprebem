@@ -17,9 +17,9 @@ export const BottonNavigation = () => {
       <Link href="/">
         <Friends />
       </Link>{" "}
-      <button type="button">
+      <Link href="/login">
         <SingOut />
-      </button>
+      </Link>
     </div>
   );
 };

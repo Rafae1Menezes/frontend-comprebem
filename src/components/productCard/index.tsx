@@ -29,7 +29,12 @@ export const ProductCard = ({
     <div className={styles.texts}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.description}>{description}</p>
-      <strong className={styles.price}>{price}</strong>
+      <strong className={styles.price}>
+        {price.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}
+      </strong>
     </div>
     <Link
       href={`/addToList?id=${id}`}

@@ -1,6 +1,11 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
 import styles from "./index.module.scss";
 
 export const Lists = () => {
+  const router = useRouter();
+  const [disable, setDisable] = useState(false);
+
   const lists = [
     {
       id: "1",
@@ -28,11 +33,28 @@ export const Lists = () => {
     },
   ];
 
+  const handleClick = (e: any) => {
+    const button = e.target as HTMLButtonElement;
+
+    button.classList.add(styles.checked);
+    button.innerText = "Adicionado com Sucesso";
+    setDisable(true);
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
+  };
+
   return (
     <div className={styles.container}>
       <h2>Escolha em qual lista adicionar</h2>
       {lists.map((list) => (
-        <button className={styles.button} type="button" key={list.id}>
+        <button
+          className={styles.button}
+          type="button"
+          key={list.id}
+          onClick={(e) => handleClick(e)}
+          disabled={disable}
+        >
           {list.title}
         </button>
       ))}

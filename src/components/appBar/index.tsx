@@ -1,8 +1,9 @@
 import classNames from "classnames";
+import Link from "next/link";
 import { ReactNode } from "react";
 import BackIcon from "../../images/icons/backArrow.svg";
-import Logo from "../../images/logo.svg";
 import { Filter } from "../filter";
+import { Logo } from "../logo";
 import styles from "./index.module.scss";
 
 type AppBarProps = {
@@ -34,9 +35,9 @@ export const AppBar = ({
 
 const Back = () => {
   return (
-    <button type="button">
-      <BackIcon />
-    </button>
+    <Link href="/" type="button" className={styles.back}>
+      <BackIcon /> Voltar
+    </Link>
   );
 };
 
