@@ -1,4 +1,6 @@
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { AppBar } from "../components/appBar";
 import { BottonNavigation } from "../components/bottonNavigation";
 import { Container } from "../components/container";
@@ -6,6 +8,18 @@ import { ProductCardProps } from "../components/productCard";
 import { Section } from "../components/section";
 
 export default function Home() {
+  const { status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return "loading...";
+  }
+
+  if (status !== "authenticated") {
+    router.push("/login");
+    return null;
+  }
+
   const pereciveis: Omit<ProductCardProps, "color">[] = [
     {
       id: "1",

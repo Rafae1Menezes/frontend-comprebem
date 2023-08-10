@@ -1,37 +1,35 @@
 import classNames from "classnames";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Logo } from "../components/logo";
 import styles from "../styles/login.module.scss";
 
 export default function AddToList() {
+  const { data: session } = useSession();
   const [error, setError] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const emailField = e.target["email"] as HTMLInputElement;
     const passwordField = e.target["password"] as HTMLInputElement;
 
-    const email = "teste@gmail.com";
-    const password = "123456";
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: emailField.value.trim(),
+      password: passwordField.value,
+    });
 
-    if (email !== emailField.value.trim()) {
+    if (!result?.error) {
+      setError(false);
+      router.push("/");
+    } else {
       emailField.focus();
-
       setError(true);
       return;
     }
-
-    if (password !== passwordField.value.trim()) {
-      emailField.focus();
-      setError(true);
-      return;
-    }
-
-    setError(false);
-    router.push("/");
   };
 
   const removeError = () => {

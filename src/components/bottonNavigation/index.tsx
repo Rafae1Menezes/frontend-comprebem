@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import Friends from "../../images/icons/friends.svg";
 import Home from "../../images/icons/home.svg";
@@ -17,7 +18,7 @@ export const BottonNavigation = () => {
       <Link href="/">
         <Friends />
       </Link>{" "}
-      <Link href="/login">
+      <Link href="/login" onClick={() => signOut()}>
         <SingOut />
       </Link>
     </div>
