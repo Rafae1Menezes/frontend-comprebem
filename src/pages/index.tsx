@@ -10,18 +10,21 @@ export default function Home() {
     {
       id: "1",
       title: "Arroz Tio João - 5kg",
+      image: "/images/arroz.png",
       description: "Promoção para 10 até pacotes.",
       price: 25.99,
     },
     {
       id: "2",
       title: "Feijao Kicaldo - 2kg",
+      image: "/images/feijao.png",
       description: "Enquanto durar o estoque.",
       price: 25.99,
     },
     {
       id: "3",
       title: "Óleo de Soja - 900ml",
+      image: "/images/oleo.png",
       description: "Promoção para 10 pacotes.",
       price: 25.99,
     },
@@ -30,63 +33,72 @@ export default function Home() {
   const higiene: Omit<ProductCardProps, "color">[] = [
     {
       id: "4",
-      title: "Arroz Tio João - 5kg",
+      title: "Pasta de dente  Tandy",
+      image: "/images/pasta.png",
       description: "Promoção para 10 até pacotes.",
       price: 25.99,
     },
     {
       id: "5",
-      title: "Feijao Kicaldo - 2kg",
+      title: "Sampoo  Seda",
+      image: "/images/shampoo.png",
       description: "Enquanto durar o estoque.",
       price: 25.99,
     },
     {
       id: "6",
-      title: "Óleo de Soja - 900ml",
+      title: "Sabonete Phebo",
+      image: "/images/sabonete.png",
       description: "Promoção para 10 pacotes.",
-      price: 25.99,
+      price: 2.5,
     },
   ];
 
   const limpeza: Omit<ProductCardProps, "color">[] = [
     {
       id: "7",
-      title: "Arroz Tio João - 5kg",
+      title: "Sabão em pó Tixan",
+      image: "/images/sabao.png",
       description: "Promoção para 10 até pacotes.",
-      price: 25.99,
+      price: 18.8,
     },
     {
       id: "8",
-      title: "Feijao Kicaldo - 2kg",
+      title: "Veja Multiuso",
+      image: "/images/veja.png",
       description: "Enquanto durar o estoque.",
-      price: 25.99,
+      price: 7.8,
     },
     {
       id: "9",
-      title: "Óleo de Soja - 900ml",
+      title: "Assolan",
+      image: "/images/assolan.png",
       description: "Promoção para 10 pacotes.",
-      price: 25.99,
+      price: 4.99,
     },
   ];
 
   const hortifruit: Omit<ProductCardProps, "color">[] = [
     {
       id: "10",
-      title: "Arroz Tio João - 5kg",
+      title: "Alface",
+      image: "/images/alface.png",
       description: "Promoção para 10 até pacotes.",
-      price: 25.99,
+      price: 3.99,
     },
     {
       id: "11",
-      title: "Feijao Kicaldo - 2kg",
+      title: "Bandeja de Morangos",
+      image: "/images/morango.png",
       description: "Enquanto durar o estoque.",
-      price: 25.99,
+      price: 9.99,
     },
     {
       id: "12",
-      title: "Óleo de Soja - 900ml",
+      title: "Batata Inglesa",
+      image: "/images/batata.png",
       description: "Promoção para 10 pacotes.",
-      price: 25.99,
+      price: 8.5,
     },
   ];
 

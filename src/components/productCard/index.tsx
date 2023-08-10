@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import arroz from "../../images/arroz.png";
 import styles from "./index.module.scss";
 
 export type ProductCardProps = {
   id: string;
   color: string;
+  image: string;
   title: string;
   description: string;
   price: number;
@@ -14,6 +14,7 @@ export type ProductCardProps = {
 export const ProductCard = ({
   color,
   id,
+  image,
   description,
   price,
   title,
@@ -21,7 +22,7 @@ export const ProductCard = ({
   <div className={styles.container}>
     <Image
       className={styles.image}
-      src={arroz}
+      src={image}
       alt="Arroz"
       width={158}
       height={104}

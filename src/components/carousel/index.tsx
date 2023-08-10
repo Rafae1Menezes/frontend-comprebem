@@ -9,14 +9,7 @@ type CarouselProps = {
 export const Carousel = ({ color, products }: CarouselProps) => (
   <div className={styles.container}>
     {products.map((product) => (
-      <ProductCard
-        key={product.title}
-        id={product.id}
-        title={product.title}
-        price={product.price}
-        description={product.description}
-        color={color}
-      />
+      <ProductCard key={product.title} {...product} color={color} />
     ))}
   </div>
 );
