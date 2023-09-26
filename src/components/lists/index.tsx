@@ -1,39 +1,28 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "./index.module.scss";
+import { ShoppingList } from "@/models/entities/ShoppingList";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
-export const Lists = () => {
+type ListsProps = {
+  lists: ShoppingList[];
+  productId: number;
+};
+
+export const Lists = ({ lists, productId }: ListsProps) => {
   const router = useRouter();
   const [disable, setDisable] = useState(false);
 
-  const lists = [
-    {
-      id: "1",
-      title: "Bebidas e petiscos",
-    },
-    {
-      id: "2",
-      title: "Presentes",
-    },
-    {
-      id: "3",
-      title: "BImperdível",
-    },
-    {
-      id: "4",
-      title: "Feira",
-    },
-    {
-      id: "5",
-      title: "Para casa",
-    },
-    {
-      id: "6",
-      title: "Congelados",
-    },
-  ];
+  const handleClick = (e: any, listId: number) => {
+    try {
+      axios.post(`http://localhost:4444/shopping-lists/${listId}/products`, {
+        productId,
+      });
+    } catch (e) {
+      console.log(e);
+    }
 
-  const handleClick = (e: any) => {
     const button = e.target as HTMLButtonElement;
 
     button.classList.add(styles.checked);
@@ -52,10 +41,10 @@ export const Lists = () => {
           className={styles.button}
           type="button"
           key={list.id}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => handleClick(e, list.id)}
           disabled={disable}
         >
-          {list.title}
+          {list.name}
         </button>
       ))}
     </div>

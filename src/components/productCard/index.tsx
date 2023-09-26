@@ -1,40 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import { Product } from "@/models/entities/Product";
 
 export type ProductCardProps = {
-  id: string;
   color: string;
-  image: string;
-  title: string;
-  description: string;
-  price: number;
-};
+} & Product;
 
 export const ProductCard = ({
   color,
   id,
-  image,
+  photo,
   description,
   price,
-  title,
+  name,
 }: ProductCardProps) => (
   <div className={styles.container}>
     <Image
       className={styles.image}
-      src={image}
-      alt="Arroz"
+      src={"/images/" + photo}
+      alt={name}
       width={158}
       height={104}
     />
     <div className={styles.texts}>
-      <h3 className={styles.title}>{title}</h3>
+      <h3 className={styles.title}>{name}</h3>
       <p className={styles.description}>{description}</p>
       <strong className={styles.price}>
-        {price.toLocaleString("pt-BR", {
+        {Number(price).toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         })}
+        x
       </strong>
     </div>
     <Link

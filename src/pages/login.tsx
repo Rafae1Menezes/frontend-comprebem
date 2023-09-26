@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Logo } from "../components/logo";
 import styles from "../styles/login.module.scss";
 
-export default function AddToList() {
+export default function Login() {
   const { data: session } = useSession();
   const [error, setError] = useState(false);
   const router = useRouter();

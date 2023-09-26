@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export default NextAuth({
+
+export const authOptions = {
   providers: [
     CredentialsProvider({
       credentials: {
@@ -14,12 +15,14 @@ export default NextAuth({
           name: "Admin",
           email: "teste@gmail.com",
           password: "123456",
+          role: "admin",
         };
         if (
           user &&
           user.email === credentials?.email &&
           user.password === credentials?.password
         ) {
+
           return user;
         } else {
           return null;
@@ -31,4 +34,14 @@ export default NextAuth({
     signIn: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+  callbacks: {
+    async session({ session, token }) {
+
+      session.user.id = token.sub
+      
+      return session
+    }
+  }
+}
+
+export default NextAuth(authOptions);

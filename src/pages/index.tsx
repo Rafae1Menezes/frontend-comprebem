@@ -6,8 +6,14 @@ import { BottonNavigation } from "../components/bottonNavigation";
 import { Container } from "../components/container";
 import { ProductCardProps } from "../components/productCard";
 import { Section } from "../components/section";
+import axios from "axios";
+import { Category } from "@/models/entities/Category";
 
-export default function Home() {
+type HomeProps = {
+  categories: Category[];
+};
+
+export default function Home({ categories }: HomeProps) {
   const { status } = useSession();
   const router = useRouter();
 
@@ -20,101 +26,12 @@ export default function Home() {
     return null;
   }
 
-  const pereciveis: Omit<ProductCardProps, "color">[] = [
-    {
-      id: "1",
-      title: "Arroz Tio João - 5kg",
-      image: "/images/arroz.png",
-      description: "Promoção para 10 até pacotes.",
-      price: 25.99,
-    },
-    {
-      id: "2",
-      title: "Feijao Kicaldo - 2kg",
-      image: "/images/feijao.png",
-      description: "Enquanto durar o estoque.",
-      price: 25.99,
-    },
-    {
-      id: "3",
-      title: "Óleo de Soja - 900ml",
-      image: "/images/oleo.png",
-      description: "Promoção para 10 pacotes.",
-      price: 25.99,
-    },
-  ];
-
-  const higiene: Omit<ProductCardProps, "color">[] = [
-    {
-      id: "4",
-      title: "Pasta de dente  Tandy",
-      image: "/images/pasta.png",
-      description: "Promoção para 10 até pacotes.",
-      price: 25.99,
-    },
-    {
-      id: "5",
-      title: "Sampoo  Seda",
-      image: "/images/shampoo.png",
-      description: "Enquanto durar o estoque.",
-      price: 25.99,
-    },
-    {
-      id: "6",
-      title: "Sabonete Phebo",
-      image: "/images/sabonete.png",
-      description: "Promoção para 10 pacotes.",
-      price: 2.5,
-    },
-  ];
-
-  const limpeza: Omit<ProductCardProps, "color">[] = [
-    {
-      id: "7",
-      title: "Sabão em pó Tixan",
-      image: "/images/sabao.png",
-      description: "Promoção para 10 até pacotes.",
-      price: 18.8,
-    },
-    {
-      id: "8",
-      title: "Veja Multiuso",
-      image: "/images/veja.png",
-      description: "Enquanto durar o estoque.",
-      price: 7.8,
-    },
-    {
-      id: "9",
-      title: "Assolan",
-      image: "/images/assolan.png",
-      description: "Promoção para 10 pacotes.",
-      price: 4.99,
-    },
-  ];
-
-  const hortifruit: Omit<ProductCardProps, "color">[] = [
-    {
-      id: "10",
-      title: "Alface",
-      image: "/images/alface.png",
-      description: "Promoção para 10 até pacotes.",
-      price: 3.99,
-    },
-    {
-      id: "11",
-      title: "Bandeja de Morangos",
-      image: "/images/morango.png",
-      description: "Enquanto durar o estoque.",
-      price: 9.99,
-    },
-    {
-      id: "12",
-      title: "Batata Inglesa",
-      image: "/images/batata.png",
-      description: "Promoção para 10 pacotes.",
-      price: 8.5,
-    },
-  ];
+  const COLOR_MAP: Record<string, string> = {
+    higiene: "#C93838",
+    hortifruit: "#E37A1A",
+    limpeza: "#27893C",
+    pereciveis: "#1569B7",
+  };
 
   return (
     <>
@@ -125,12 +42,38 @@ export default function Home() {
       <AppBar content={<AppBar.Logo />} withFilter />
 
       <Container small>
-        <Section title="Perecíveis" color="#1569B7" products={pereciveis} />
-        <Section title="Higiene Pessoal" color="#C93838" products={higiene} />
-        <Section title="Limpeza" color="#27893C" products={limpeza} />
-        <Section title="Hortifruit" color="#E37A1A" products={hortifruit} />
+        {categories.map((c) => (
+          <Section
+            key={c.name}
+            title={c.name}
+            color={COLOR_MAP[c.name as keyof typeof COLOR_MAP] || "#000000"}
+            products={c.products}
+          />
+        ))}
       </Container>
       <BottonNavigation />
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  try {
+    const response = await axios.get<Category[]>(
+      "http://localhost:4444/products/active"
+    );
+
+    return {
+      props: {
+        categories: response.data,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+  }
+
+  return {
+    props: {
+      categories: [],
+    },
+  };
+};
