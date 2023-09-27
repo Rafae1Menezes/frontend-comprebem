@@ -2,8 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "./index.module.scss";
 import { ShoppingList } from "@/models/entities/ShoppingList";
-import { useSession } from "next-auth/react";
-import axios from "axios";
+import axios from "@/config/axios";
 
 type ListsProps = {
   lists: ShoppingList[];
@@ -16,7 +15,9 @@ export const Lists = ({ lists, productId }: ListsProps) => {
 
   const handleClick = (e: any, listId: number) => {
     try {
-      axios.post(`http://localhost:4444/shopping-lists/${listId}/products`, {
+      const response = axios.get<ShoppingList[]>("/shopping-lists/user/" + 1);
+
+      axios.post(`/shopping-lists/${listId}/products`, {
         productId,
       });
     } catch (e) {

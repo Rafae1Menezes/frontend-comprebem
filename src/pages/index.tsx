@@ -6,8 +6,9 @@ import { BottonNavigation } from "../components/bottonNavigation";
 import { Container } from "../components/container";
 import { ProductCardProps } from "../components/productCard";
 import { Section } from "../components/section";
-import axios from "axios";
+
 import { Category } from "@/models/entities/Category";
+import axios from "@/config/axios";
 
 type HomeProps = {
   categories: Category[];
@@ -58,9 +59,7 @@ export default function Home({ categories }: HomeProps) {
 
 export const getServerSideProps = async () => {
   try {
-    const response = await axios.get<Category[]>(
-      "http://localhost:4444/products/active"
-    );
+    const response = await axios.get<Category[]>("/products/active");
 
     return {
       props: {

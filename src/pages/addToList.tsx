@@ -3,13 +3,14 @@ import { AppBar } from "../components/appBar";
 import { BottonNavigation } from "../components/bottonNavigation";
 import { Container } from "../components/container";
 import { Lists } from "../components/lists";
-import axios from "axios";
+
 import { ShoppingList } from "@/models/entities/ShoppingList";
 import { GetServerSideProps } from "next";
 import { getSession, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { useRouter } from "next/router";
+import axios from "@/config/axios";
 
 type AddToListProps = {
   shoppingList: ShoppingList[];
@@ -56,7 +57,7 @@ export const getServerSideProps: GetServerSideProps<AddToListProps> = async ({
     const userId = parseInt(user.id, 10);
 
     const response = await axios.get<ShoppingList[]>(
-      "http://localhost:4444/shopping-lists/user/" + userId
+      "/shopping-lists/user/" + userId
     );
 
     return {
