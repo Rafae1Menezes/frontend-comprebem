@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session, TokenSet } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
@@ -35,11 +35,17 @@ export const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async session({ session, token }) {
-
-      session.user.id = token.sub
+    async session({ session, token }: {session: Session, token: TokenSet}) {
       
-      return session
+      const mySession = {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub as string
+        }
+      }
+
+      return mySession
     }
   }
 }

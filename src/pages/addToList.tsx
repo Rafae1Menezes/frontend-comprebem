@@ -53,8 +53,8 @@ export const getServerSideProps: GetServerSideProps<AddToListProps> = async ({
 }) => {
   try {
     const productId = Number(query.id as string);
-    const { user } = await getServerSession(req, res, authOptions);
-    const userId = parseInt(user.id, 10);
+    const session = await getServerSession(req, res, authOptions);
+    const userId = parseInt(session?.user.id || "0", 10);
 
     const response = await axios.get<ShoppingList[]>(
       "/shopping-lists/user/" + userId
