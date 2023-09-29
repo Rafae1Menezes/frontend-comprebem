@@ -1,3 +1,5 @@
+import { SupermarketUser } from "./User";
+
 export type Product = {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export type Product = {
   description: string;
   category: string;
   photo: string;
+  owner:  SupermarketUser;
 }

@@ -7,4 +7,7 @@ export type User =  {
   photo: string;
 }
 
-export type SupermarketUser = User
+export type SupermarketUser = {
+  user_id: number;
+  user: User;
+}

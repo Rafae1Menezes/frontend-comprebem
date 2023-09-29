@@ -5,37 +5,37 @@ import { Product } from "@/models/entities/Product";
 
 export type ProductCardProps = {
   color: string;
-} & Product;
+  product: Product;
+};
 
-export const ProductCard = ({
-  color,
-  id,
-  photo,
-  description,
-  price,
-  name,
-}: ProductCardProps) => (
+export const ProductCard = ({ color, product }: ProductCardProps) => (
   <div className={styles.container}>
     <Image
       className={styles.image}
-      src={"/images/" + photo}
-      alt={name}
+      src={"/images/" + product.photo}
+      alt={product.name}
       width={158}
       height={104}
     />
+    <Image
+      src={"/images/" + product.owner.user.photo}
+      alt="logo"
+      width={100}
+      height={17}
+      className={styles.logo}
+    />
     <div className={styles.texts}>
-      <h3 className={styles.title}>{name}</h3>
-      <p className={styles.description}>{description}</p>
+      <h3 className={styles.title}>{product.name}</h3>
+      <p className={styles.description}>{product.description}</p>
       <strong className={styles.price}>
-        {Number(price).toLocaleString("pt-BR", {
+        {Number(product.price).toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         })}
-        x
       </strong>
     </div>
     <Link
-      href={`/addToList?id=${id}`}
+      href={`/addToList?id=${product.id}`}
       className={styles.button}
       style={{ backgroundColor: color }}
     >

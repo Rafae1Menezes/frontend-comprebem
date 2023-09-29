@@ -1,3 +1,4 @@
+import { Product } from "@/models/entities/Product";
 import { Carousel } from "../carousel";
 import { ProductCardProps } from "../productCard";
 import { Title } from "../title";
@@ -6,7 +7,7 @@ import styles from "./index.module.scss";
 type SetionProps = {
   title: string;
   color: string;
-  products: Omit<ProductCardProps, "color">[];
+  products: Product[];
 };
 
 export const Section = ({ color, title, products }: SetionProps) => (

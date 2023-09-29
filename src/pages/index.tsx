@@ -61,6 +61,8 @@ export const getServerSideProps = async () => {
   try {
     const response = await axios.get<Category[]>("/products/active");
 
+    console.log(response);
+
     return {
       props: {
         categories: response.data,

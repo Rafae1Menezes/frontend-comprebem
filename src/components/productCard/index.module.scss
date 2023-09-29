@@ -2,6 +2,7 @@
   border-radius: 8px;
   border: 1px solid rgba(91, 91, 91, 0.19);
   width: 158px;
+  position: relative;
 }
 
 .image {
@@ -38,4 +39,13 @@
   color: #fff;
   padding: 4px 0;
   font-size: 13px;
+}
+
+.logo {
+  height: 17;
+  width: auto;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 3px;
 }
